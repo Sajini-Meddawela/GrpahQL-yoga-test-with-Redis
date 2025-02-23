@@ -1,18 +1,10 @@
-const typeDefs = `
-  type AgentStats {
-    totalConversations: Int
-    activeChats: Int
-    responseTime: String
-    resolutionRate: Float
-  }
+import { gql } from "graphql-tag";
+import { mergeTypeDefs } from "@graphql-tools/merge";
+import agentStats from "./AgentStats";
+import queries from "./queries";
+import mutations from "./mutations";
+import subscriptions from "./subscriptions";
 
-  type Query {
-    getAgentStats: AgentStats
-  }
-
-  type Subscription {
-    agentUpdated: AgentStats
-  }
-`;
+const typeDefs = mergeTypeDefs([agentStats, queries, mutations, subscriptions]);
 
 export default typeDefs;
